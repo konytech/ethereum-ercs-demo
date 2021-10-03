@@ -1,22 +1,41 @@
 import React from 'react'
 import { useState } from 'react';
-import { Typography, Button, TextField, Grid, CircularProgress } from '@mui/material';
+import { Typography, Button, TextField, Grid, CircularProgress, Alert } from '@mui/material';
 
 const ERC20Token = require("./ERC20Token");
-const { web3 } = require('../ethereumAPI')
-const web3Token = new web3.eth.Contract(ERC20Token.abi);
+const { web3, applyDecimals } = require('../../utils/ethereumAPI')
+var web3Token = new web3.eth.Contract(ERC20Token.abi);
 
-const ERC20Create = () => {
+const ERC20Create = ({ importToken }) => {
     const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const [tokenName, setTokenName] = useState("");
+    const [tokenSymbol, setTokenSymbol] = useState("");
+    const [tokenInitialSupply, setTokenInitialSupply] = useState("1000000000000000000");
 
     const onClick = async () => {
+        if (successMessage) {
+            importToken(web3Token.options.address);
+            return;
+        }
+
         setLoading(true);
+        setErrorMessage("");
 
         const accounts = await web3.eth.getAccounts();
-        console.log(accounts);
-        await web3Token.deploy({ data: ERC20Token.bytecode, arguments: ["GOLD", "GLD", 10000] })
-                        .send({ from: accounts[0] });
+        try {
+            const result = await web3Token.deploy({ data: ERC20Token.bytecode, arguments: [tokenName, tokenSymbol, tokenInitialSupply] })
+                .send({ from: accounts[0] });
 
+            web3Token.options.address = result._address;
+            console.log(web3Token);
+            setSuccessMessage(`Token successfully deployed at: ${result._address}`)
+        } catch (error) {
+            setErrorMessage(error.message);
+        }
+
+        setLoading(false);
     };
 
     return (
@@ -30,25 +49,51 @@ const ERC20Create = () => {
                 <Grid item xs={12}>
                     <TextField
                         label="Name"
-                        id="outlined-start-adornment"
                         sx={{ m: 1, width: '25ch' }}
                         placeholder="GOLD"
+                        onChange={(e) => setTokenName(e.target.value)}
                     />
                     <TextField
                         label="Symbol"
-                        id="outlined-start-adornment"
                         sx={{ m: 1, width: '25ch' }}
                         placeholder="GLD"
+                        onChange={(e) => setTokenSymbol(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <TextField
+                        label="Initial supply (raw)"
+                        sx={{ m: 1, width: '30ch' }}
+                        placeholder="1000000000000000000"
+                        type="number"
+                        value={tokenInitialSupply}
+                        onChange={(e) => setTokenInitialSupply(e.target.value)}
+                    />
+                    <TextField
+                        label="Initial supply (adjusted)"
+                        sx={{ m: 1, width: '30ch' }}
+                        placeholder="1"
+                        value={applyDecimals(tokenInitialSupply, 18)}
+                        variant="filled"
+                    />
+                    <TextField
+                        label="Decimals"
+                        sx={{ m: 1, width: '10ch' }}
+                        value="18"
+                        type="number"
+                        variant="filled"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    {successMessage && <Alert severity="success">{successMessage}</Alert>}
+                    {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
                     <Button
                         variant="contained"
                         sx={{ m: 1 }}
                         onClick={() => onClick()}
                         disabled={loading}
                     >
-                        {loading ? <CircularProgress size={25} /> : "Create"}
+                        {successMessage ? "Overview" : (loading ? <CircularProgress size={25} /> : "Create")}
                     </Button>
                 </Grid>
             </Grid>
