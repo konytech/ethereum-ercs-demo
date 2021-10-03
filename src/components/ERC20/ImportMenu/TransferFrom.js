@@ -4,13 +4,20 @@ import { Grid, TextField, Button, Alert, CircularProgress } from '@mui/material'
 
 const { web3, applyDecimals } = require('../../../utils/ethereumAPI')
 
-const Transfer = ({ web3Token, refreshOverview, tokenData }) => {
+const TransferFrom = ({ web3Token, refreshOverview, tokenData }) => {
     const symbol = tokenData.find(x => x.name === "Symbol").value;
     const decimals = tokenData.find(x => x.name === "Decimals").value;
 
-    const [data, setData] = useState({ arg1: '', arg2: '', errorMessage: '', successMessage: '', loading: false });
+    const [data, setData] = useState({
+        arg1: '',
+        arg2: '',
+        arg3: '',
+        errorMessage: '',
+        successMessage: '',
+        loading: false
+    });
 
-    const onClickTransfer = async () => {
+    const onClickTransferFrom = async () => {
 
         setData({ ...data, loading: true });
 
@@ -18,9 +25,9 @@ const Transfer = ({ web3Token, refreshOverview, tokenData }) => {
         let successMessage = "";
         try {
             const accounts = await web3.eth.getAccounts();
-            const amountToSend = applyDecimals(data.arg2, decimals, "positive");
-            await web3Token.methods.transfer(data.arg1, amountToSend).send({ from: accounts[0] });
-            successMessage = `Transfer successful. ${data.arg2} ${symbol} sent`;
+            const amountToSend = applyDecimals(data.arg3, decimals, "positive");
+            await web3Token.methods.transferFrom(data.arg1, data.arg2, amountToSend).send({ from: accounts[0] });
+            successMessage = `Transfer successful. ${data.arg3} ${symbol} sent from ${data.arg1} to ${data.arg2}`;
 
             // Refresh the token overview to update the wallet balance
             refreshOverview();
@@ -37,19 +44,28 @@ const Transfer = ({ web3Token, refreshOverview, tokenData }) => {
                 <Button
                     variant="contained"
                     sx={{ m: 1 }}
-                    onClick={(e) => onClickTransfer()}
+                    onClick={(e) => onClickTransferFrom()}
                     disabled={data.loading}
                 >
-                    {data.loading ? <CircularProgress size={25} /> : "transfer(address to, uint256 value)"}
+                    {data.loading ? <CircularProgress size={25} /> : "transferFrom(address from, address to, uint256 value)"}
                 </Button>
             </Grid>
             <Grid item xs={12}>
+                <TextField
+                    label="From"
+                    sx={{ m: 1, width: '50ch' }}
+                    size="small"
+                    placeholder="0x0000000000000000000000000000000000000000"
+                    onChange={(e) => setData({ ...data, arg1: e.target.value, errorMessage: '', successMessage: '' })}
+                    InputLabelProps={{ shrink: true }}
+                    disabled={data.loading}
+                />
                 <TextField
                     label="To"
                     sx={{ m: 1, width: '50ch' }}
                     size="small"
                     placeholder="0x0000000000000000000000000000000000000000"
-                    onChange={(e) => setData({ ...data, arg1: e.target.value, errorMessage: '', successMessage: '' })}
+                    onChange={(e) => setData({ ...data, arg2: e.target.value, errorMessage: '', successMessage: '' })}
                     InputLabelProps={{ shrink: true }}
                     disabled={data.loading}
                 />
@@ -59,7 +75,7 @@ const Transfer = ({ web3Token, refreshOverview, tokenData }) => {
                     size="small"
                     placeholder="1"
                     type="number"
-                    onChange={(e) => setData({ ...data, arg2: e.target.value, errorMessage: '', successMessage: '' })}
+                    onChange={(e) => setData({ ...data, arg3: e.target.value, errorMessage: '', successMessage: '' })}
                     InputLabelProps={{ shrink: true }}
                     disabled={data.loading}
                 />
@@ -68,8 +84,8 @@ const Transfer = ({ web3Token, refreshOverview, tokenData }) => {
                 {data.errorMessage && <Alert severity="error" onClose={() => setData({ ...data, errorMessage: "" })}>{data.errorMessage}</Alert>}
                 {data.successMessage && <Alert severity="success" onClose={() => setData({ ...data, successMessage: "" })}>{data.successMessage}</Alert>}
             </Grid>
-        </Grid >
+        </Grid>
     )
 }
 
-export default Transfer
+export default TransferFrom
