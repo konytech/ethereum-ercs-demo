@@ -14,9 +14,11 @@ import ERC20App from './components/ERC20/ERC20App';
 const drawerWidth = 240;
 const ERC = {
   ERC20: "ERC-20",
-  ERC721: "ERC-721",
-  ERC777: "ERC-777",
-  ERC1155: "ERC-1155"
+
+  //ERCs below are not yet implemented
+  //ERC721: "ERC-721",
+  //ERC777: "ERC-777",
+  //ERC1155: "ERC-1155"
 }
 const allERCs = Object.values(ERC);
 

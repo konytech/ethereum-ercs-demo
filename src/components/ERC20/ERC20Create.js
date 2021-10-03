@@ -93,7 +93,7 @@ const ERC20Create = ({ importToken }) => {
                         onClick={() => onClick()}
                         disabled={loading}
                     >
-                        {successMessage ? "Overview" : (loading ? <CircularProgress size={25} /> : "Create")}
+                        {successMessage ? "Token info" : (loading ? <CircularProgress size={25} /> : "Create")}
                     </Button>
                 </Grid>
             </Grid>
