@@ -1,5 +1,5 @@
 const hardhatConfig = {
-    defaultNetwork: "rinkeby",
+    defaultNetwork: "hardhat",
     networks: {
       hardhat: { // Default network, can be removed from here and will still work
       },
