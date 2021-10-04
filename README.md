@@ -31,7 +31,7 @@
 <h3 align="center">Ethereum ERCs demo using React</h3>
 
   <p align="center">
-    project_description
+    Client application demo showcasing interacting with smart contracts that follows common ERCs standards.
     <br />
     <br />
     <a href="https://github.com/konytech/ethereum-ercs-demo">View Demo (WIP)</a>
@@ -52,21 +52,17 @@
   </li>
   <li>
     <a href="#getting-started">Getting Started</a>
-    <!-- <ul>
+    <ul>
       <li><a href="#installation">Installation</a></li>
-    </ul>-->
+      <li><a href="#installation">Build</a></li>
+    </ul>
   </li>
-  <li><a href="#usage">Usage</a></li>
-  <li><a href="#roadmap">Roadmap</a></li>
-  <li><a href="#contributing">Contributing</a></li>
-  <li><a href="#contact">Contact</a></li>
+  <li><a href="#license">Supported ERCs</a></li>
   <li><a href="#license">License</a></li>
 </ol>
 
 <!-- OVERVIEW -->
 ## Overview
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 ### Built With
 
@@ -76,6 +72,11 @@
 * [React.js](https://reactjs.org/)
 * [Node.js](https://nodejs.org/)
 * [Material UI](https://mui.com/)
+
+### Example: ERC-20 Token creation
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 
 
 <!-- GETTING STARTED -->
@@ -91,47 +92,28 @@
    ```sh
    npm i
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Start the development server
+   ```sh
+   npm start
+   ```
+5. Access the app at <a href="http://localhost:3000">localhost:3000</a>
+
+### Build
+
+1. Create a production build
+   ```sh
+   npm build
    ```
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- Supported -->
+## Supported ERCs
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [] Feature 1
-- [] Feature 2
-- [] Feature 3
-    - [] Nested Feature
+- [X] ERC-20
+- [] ERC-721
+- [] ERC-777
+- [] ERC-1155
 
 See the [open issues](https://github.com/konytech/ethereum-ercs-demo/issues) for a full list of proposed features (and known issues).
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "feature".
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
-3. Commit your Changes (`git commit -m 'Add some NewFeature'`)
-4. Push to the Branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
-
-<!-- CONTACT -->
-## Contact
-
-Kony - [@KonyTech](https://twitter.com/KonyTech)
-
-Project Link: [https://github.com/konytech/ethereum-ercs-demo](https://github.com/konytech/ethereum-ercs-demo)
 
 <!-- LICENSE -->
 ## License
@@ -150,4 +132,4 @@ Distributed under the **MIT License**.
 [issues-url]: https://github.com/konytech/ethereum-ercs-demo/issues
 [license-shield]: https://img.shields.io/github/license/konytech/ethereum-ercs-demo.svg?style=for-the-badge
 [license-url]: https://github.com/konytech/ethereum-ercs-demo/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/ERC20.gif
