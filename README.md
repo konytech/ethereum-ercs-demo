@@ -31,7 +31,7 @@
 <h3 align="center">Ethereum ERCs demo using React</h3>
 
   <p align="center">
-    Demo client application allowing to interact with smart contracts following the most common ERCs standards
+    Client application demo showcasing interacting with smart contracts that follows common ERCs standards.
     <br />
     <br />
     <a href="https://github.com/konytech/ethereum-ercs-demo">View Demo (WIP)</a>
@@ -64,8 +64,6 @@
 <!-- OVERVIEW -->
 ## Overview
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 ### Built With
 
 * [Hardhat](https://hardhat.org/)
@@ -74,6 +72,11 @@
 * [React.js](https://reactjs.org/)
 * [Node.js](https://nodejs.org/)
 * [Material UI](https://mui.com/)
+
+### Example: ERC-20 Token creation
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 
 
 <!-- GETTING STARTED -->
