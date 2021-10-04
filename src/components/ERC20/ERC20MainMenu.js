@@ -2,10 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { Button, Grid, TextField } from '@mui/material';
 
-const rinkebyWETHAdress = "0xc778417e063141139fce010982780140aa0cd5ab";
-
 const ERC20MainMenu = ({ onClickCreate, importToken }) => {
-    const [tokenAddress, setTokenAddress] = useState(rinkebyWETHAdress);
+    const [tokenAddress, setTokenAddress] = useState("");
 
     return (
         <Grid container spacing={2}>

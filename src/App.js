@@ -1,79 +1,34 @@
-import { useState } from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import { ListItemButton } from '@mui/material';
-import ERC20App from './components/ERC20/ERC20App';
+import { useState, useEffect } from 'react';
+import AppAuthenticated from './components/AppAuthenticated';
 
-const drawerWidth = 240;
-const ERC = {
-  ERC20: "ERC-20",
+const Web3 = require("web3");
 
-  //ERCs below are not yet implemented
-  //ERC721: "ERC-721",
-  //ERC777: "ERC-777",
-  //ERC1155: "ERC-1155"
-}
-const allERCs = Object.values(ERC);
+const App = () => {
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [instruction, setInstruction] = useState("Waiting for connection with wallet...");
 
-function App() {
-  const [ERCIndex, setERCIndex] = useState(0);
+  useEffect(() => {
+    const connectWallet = async () => {
+      window.web3 = new Web3(window.ethereum);
+      try {
+        await window.ethereum.enable();
+        setInstruction("");
+      } catch (error) {
+        setInstruction("Wallet connection denied, reload the page to try again.");
+        return;
+      }
+      setWalletConnected(true);
+    };
+    connectWallet();
+  }, []);
 
   return (<>
-    {window.ethereum ? (
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-        >
-          <Toolbar>
-            <Typography variant="h6" noWrap component="div">
-              Ethereum ERCs demo
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-          }}
-          variant="permanent"
-          anchor="left"
-        >
-          <Toolbar />
-          <Divider />
-          <List>
-            {allERCs.map((erc, index) => {
-              return (<ListItemButton
-                key={index}
-                selected={index === ERCIndex}
-                onClick={() => setERCIndex(index)}
-              >
-                <ListItemText primary={erc} />
-              </ListItemButton>
-              );
-            })}
-          </List>
-        </Drawer>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-          <Toolbar />
-          {ERCIndex === allERCs.findIndex((x) => x === ERC.ERC20) && <ERC20App />}
-        </Box>
-      </Box>
-    ) : "Metamask or another EIP-1102 / EIP-1193 compliant wallet not found"}
+    {window.ethereum ?
+      (walletConnected ?
+        <AppAuthenticated />
+        : instruction)
+      : "Metamask or other EIP-1102 / EIP-1193 compliant wallet not found."
+    }
   </>);
 }
 
