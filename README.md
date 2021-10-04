@@ -25,7 +25,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/konytech/ethereum-ercs-demo">
-    <img src="https://ethereum.org/static/a183661dd70e0e5c70689a0ec95ef0ba/34ca5/eth-diamond-purple.png" alt="Logo">
+    <img src="images/ethlogo.png" alt="Logo">
   </a>
 
 <h3 align="center">Ethereum ERCs demo using React</h3>
