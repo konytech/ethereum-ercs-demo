@@ -31,7 +31,7 @@
 <h3 align="center">Ethereum ERCs demo using React</h3>
 
   <p align="center">
-    Client application demo showcasing interacting with smart contracts that follows common ERCs standards.
+    Client application demo showcasing interacting with smart contracts that follow ERCs standards.
     <br />
     <br />
     <a href="https://github.com/konytech/ethereum-ercs-demo">View Demo (WIP)</a>
@@ -109,11 +109,11 @@
 ## Supported ERCs
 
 - [X] ERC-20
-- [] ERC-721
-- [] ERC-777
-- [] ERC-1155
+- [WIP] ERC-721
+- [WIP] ERC-777
+- [WIP] ERC-1155
 
-See the [open issues](https://github.com/konytech/ethereum-ercs-demo/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/konytech/ethereum-ercs-demo/issues) for a full list of proposed features and known issues.
 
 <!-- LICENSE -->
 ## License
