@@ -1,1 +1,1 @@
-module.exports = require("../../eth_contracts/artifacts/contracts/ERC20Token.sol/ERC20Token.json");
+module.exports = require("../../solidity/artifacts/src/solidity/contracts/ERC20Token.sol/ERC20Token.json");

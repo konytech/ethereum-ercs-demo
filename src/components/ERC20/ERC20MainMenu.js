@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react';
 import { Button, Grid, TextField } from '@mui/material';
 
@@ -11,7 +10,10 @@ const ERC20MainMenu = ({ onClickCreate, importToken }) => {
                 <Button
                     variant="contained"
                     sx={{ m: 1 }}
-                    onClick={() => onClickCreate()} >Create token</Button>
+                    onClick={() => onClickCreate()}
+                >
+                    Create token
+                </Button>
             </Grid>
             <Grid item xs={12}>
                 <TextField
@@ -24,8 +26,11 @@ const ERC20MainMenu = ({ onClickCreate, importToken }) => {
                 />
                 <Button
                     variant="contained"
-                    sx={{ m: 1 }} 
-                    onClick={() => importToken(tokenAddress)}>Import token</Button>
+                    sx={{ m: 1 }}
+                    onClick={() => importToken(tokenAddress)}
+                >
+                    Import token
+                </Button>
             </Grid>
         </Grid>
     )

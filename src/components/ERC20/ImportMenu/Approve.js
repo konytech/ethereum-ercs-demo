@@ -1,10 +1,9 @@
-import React from 'react'
 import { useState } from 'react';
 import { Grid, TextField, Button, Alert, CircularProgress } from '@mui/material';
 
 const { web3, applyDecimals } = require('../../../utils/ethereumAPI')
 
-const Approve = ({ web3Token, refreshOverview, tokenData }) => {
+const Approve = ({ web3Token, refreshDataGrid, tokenData }) => {
     const symbol = tokenData.find(x => x.name === "Symbol").value;
     const decimals = tokenData.find(x => x.name === "Decimals").value;
 
@@ -21,8 +20,8 @@ const Approve = ({ web3Token, refreshOverview, tokenData }) => {
             await web3Token.methods.approve(data.arg1, amountToApprove).send({ from: accounts[0] });
             successMessage = `Approval successful. ${data.arg2} ${symbol} approved to ${data.arg1}`;
 
-            // Refresh the token overview to update the wallet balance
-            refreshOverview();
+            // Refresh the token info to update the wallet balance
+            refreshDataGrid();
         } catch (error) {
             errorMessage = error.message;
         }

@@ -1,10 +1,9 @@
-import React from 'react'
 import { useState } from 'react';
 import { Grid, TextField, Button, Alert, CircularProgress } from '@mui/material';
 
 const { web3, applyDecimals } = require('../../../utils/ethereumAPI')
 
-const TransferFrom = ({ web3Token, refreshOverview, tokenData }) => {
+const TransferFrom = ({ web3Token, refreshDataGrid, tokenData }) => {
     const symbol = tokenData.find(x => x.name === "Symbol").value;
     const decimals = tokenData.find(x => x.name === "Decimals").value;
 
@@ -29,8 +28,8 @@ const TransferFrom = ({ web3Token, refreshOverview, tokenData }) => {
             await web3Token.methods.transferFrom(data.arg1, data.arg2, amountToSend).send({ from: accounts[0] });
             successMessage = `Transfer successful. ${data.arg3} ${symbol} sent from ${data.arg1} to ${data.arg2}`;
 
-            // Refresh the token overview to update the wallet balance
-            refreshOverview();
+            // Refresh the token info to update the wallet balance
+            refreshDataGrid();
         } catch (error) {
             errorMessage = error.message;
         }

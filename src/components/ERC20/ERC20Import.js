@@ -1,7 +1,6 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { Grid, Typography, Box } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { useState, useEffect } from 'react'
+import { Grid, Typography, Box } from '@mui/material'
+import { DataGrid } from '@mui/x-data-grid'
 import BalanceOf from './ImportMenu/BalanceOf';
 import Transfer from './ImportMenu/Transfer';
 import TransferFrom from './ImportMenu/TransferFrom';
@@ -9,7 +8,7 @@ import Approve from './ImportMenu/Approve';
 import Allowance from './ImportMenu/Allowance';
 
 const ERC20Token = require("./ERC20Token");
-const { web3, applyDecimals } = require('../../utils/ethereumAPI')
+const { web3, applyDecimals } = require("../../utils/ethereumAPI");
 
 const ERC20Import = ({ tokenAddress }) => {
     const web3Token = new web3.eth.Contract(ERC20Token.abi, tokenAddress);
@@ -25,7 +24,7 @@ const ERC20Import = ({ tokenAddress }) => {
 
     const columns = [
         { field: 'name', headerName: 'Token', width: 150 },
-        { field: 'value', headerName: 'Value', width: 500 },
+        { field: 'value', headerName: 'Value', width: 500 }
     ];
 
     useEffect(() => {
@@ -38,7 +37,7 @@ const ERC20Import = ({ tokenAddress }) => {
 
             const accounts = await web3.eth.getAccounts();
             const currentBalance = await web3Token.methods.balanceOf(accounts[0]).call();
-
+            
             setTokenData(tokenData => [
                 tokenData[0],
                 { ...tokenData[1], value: name },
@@ -49,12 +48,12 @@ const ERC20Import = ({ tokenAddress }) => {
             ]);
         }
         fetchData();
-    }, [tokenAddress, tokenRefresh]); // Or [] if effect doesn't need props or state
+    }, [tokenAddress, tokenRefresh]);
 
-    const refreshOverview = () => setTokenRefresh(t => ++t);
+    const refreshDataGrid = () => setTokenRefresh(t => ++t);
 
     return (
-        <>
+        <div>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Typography variant="h6" noWrap component="div" sx={{ m: 1 }}>
@@ -72,15 +71,15 @@ const ERC20Import = ({ tokenAddress }) => {
                 <Allowance web3Token={web3Token} tokenData={tokenData} />
             </Box>
             <Box border={1} sx={{ mt: 2, borderRadius: 1, borderColor: "LightGray" }}>
-                <Transfer web3Token={web3Token} refreshOverview={refreshOverview} tokenData={tokenData} />
+                <Transfer web3Token={web3Token} tokenData={tokenData} refreshDataGrid={refreshDataGrid}/>
             </Box>
             <Box border={1} sx={{ mt: 2, borderRadius: 1, borderColor: "LightGray" }}>
-                <TransferFrom web3Token={web3Token} refreshOverview={refreshOverview} tokenData={tokenData} />
+                <TransferFrom web3Token={web3Token} refreshDataGrid={refreshDataGrid} tokenData={tokenData} />
             </Box>
             <Box border={1} sx={{ mt: 2, borderRadius: 1, borderColor: "LightGray" }}>
-                <Approve web3Token={web3Token} refreshOverview={refreshOverview} tokenData={tokenData} />
+                <Approve web3Token={web3Token} refreshDataGrid={refreshDataGrid} tokenData={tokenData} />
             </Box>
-        </>
+        </div>
     )
 }
 

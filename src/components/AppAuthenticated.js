@@ -1,21 +1,10 @@
-import React from 'react'
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import { ListItemButton } from '@mui/material';
 import ERC20App from './ERC20/ERC20App';
+import { CssBaseline, Divider, Drawer, List, ListItemButton,
+    ListItemText, Typography, AppBar, Toolbar, Box } from '@mui/material';
 
 const AppAuthenticated = () => {
     const [ERCIndex, setERCIndex] = useState(0);
-
-    const drawerWidth = 240;
     const ERC = {
         ERC20: "ERC-20",
 
@@ -25,6 +14,7 @@ const AppAuthenticated = () => {
         //ERC1155: "ERC-1155"
     }
     const allERCs = Object.values(ERC);
+    const drawerWidth = 240;
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -44,12 +34,11 @@ const AppAuthenticated = () => {
                     flexShrink: 0,
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
+                        boxSizing: 'border-box'
+                    }
                 }}
                 variant="permanent"
-                anchor="left"
-            >
+                anchor="left">
                 <Toolbar />
                 <Divider />
                 <List>
@@ -67,8 +56,8 @@ const AppAuthenticated = () => {
             </Drawer>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-                <Toolbar />
+                sx={{ flexGrow: 1, bgcolor: 'background.default', p:3 }}>
+                    <Toolbar />
                 {ERCIndex === allERCs.findIndex((x) => x === ERC.ERC20) && <ERC20App />}
             </Box>
         </Box>
