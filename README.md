@@ -90,7 +90,7 @@
    ```
 3. Install NPM packages
    ```sh
-   npm i
+   npm ci
    ```
 4. Start the development server
    ```sh
