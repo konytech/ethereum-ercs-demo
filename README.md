@@ -21,6 +21,8 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
+Build this project from stratch: https://youtu.be/92rnG1t_55I
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -39,6 +41,7 @@
     <a href="https://github.com/konytech/ethereum-ercs-demo/issues">Report Bug</a>
     ·
     <a href="https://github.com/konytech/ethereum-ercs-demo/issues">Request Feature</a>
+    <br />
   </p>
 </div>
 
