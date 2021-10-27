@@ -137,3 +137,4 @@ src/eth_contracts/artifacts/build-info
 src/eth_contracts/artifacts/contracts/openzeppelin
 src/eth_contracts/cache
 src/eth_contracts/artifacts/hardhat
+src/solidity/cache
