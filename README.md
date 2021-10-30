@@ -15,29 +15,23 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-Build this project from stratch: https://youtu.be/92rnG1t_55I
 
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
+  <h3 align="center">Ethereum ERCs demo using React</h3>
+  
   <a href="https://github.com/konytech/ethereum-ercs-demo">
     <img src="images/ethlogo.png" alt="Logo">
   </a>
 
-<h3 align="center">Ethereum ERCs demo using React</h3>
-
   <p align="center">
-    Client application demo showcasing interacting with smart contracts that follow ERCs standards.
+    Client application interacting with smart contracts that follow ERCs standards.
     <br />
     <br />
-    <a href="https://github.com/konytech/ethereum-ercs-demo">View Demo (WIP)</a>
-    ·
+    Build this project from stratch: https://youtu.be/92rnG1t_55I
+    <br />
+    <!--<a href="https://github.com/konytech/ethereum-ercs-demo">View Demo (WIP)</a>
+    ·-->
     <a href="https://github.com/konytech/ethereum-ercs-demo/issues">Report Bug</a>
     ·
     <a href="https://github.com/konytech/ethereum-ercs-demo/issues">Request Feature</a>
