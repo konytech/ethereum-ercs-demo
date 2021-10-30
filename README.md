@@ -85,15 +85,15 @@
    ```sh
    git clone https://github.com/konytech/ethereum-ercs-demo.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm ci
    ```
-4. Start the development server
+3. Start the development server
    ```sh
    npm start
    ```
-5. Access the app at <a href="http://localhost:3000">localhost:3000</a>
+4. Access the app at <a href="http://localhost:3000">localhost:3000</a>
 
 ### Build
 
@@ -119,14 +119,4 @@ Distributed under the **MIT License**.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/konytech/ethereum-ercs-demo.svg?style=for-the-badge
-[contributors-url]: https://github.com/konytech/ethereum-ercs-demo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/konytech/ethereum-ercs-demo.svg?style=for-the-badge
-[forks-url]: https://github.com/konytech/ethereum-ercs-demo/network/members
-[stars-shield]: https://img.shields.io/github/stars/konytech/ethereum-ercs-demo.svg?style=for-the-badge
-[stars-url]: https://github.com/konytech/ethereum-ercs-demo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/konytech/ethereum-ercs-demo.svg?style=for-the-badge
-[issues-url]: https://github.com/konytech/ethereum-ercs-demo/issues
-[license-shield]: https://img.shields.io/github/license/konytech/ethereum-ercs-demo.svg?style=for-the-badge
-[license-url]: https://github.com/konytech/ethereum-ercs-demo/blob/master/LICENSE.txt
 [product-screenshot]: images/ERC20.gif
